@@ -1,16 +1,21 @@
-const { Telegraf } = require("telegraf");
-require("dotenv").config();
 
-const token = process.env.TOKEN;
-const bot = new Telegraf(token);
+const { setupBot } = require('./bot');
+require("dotenv").config({path: './config/.env'});
 
-bot.on("message", async ctx =>{
-    const msg = ctx.message.text;
-
-    if(msg == "ключ"){
-        ctx.reply("Key word");
+(async function(){
+    try {
+        await setupBot().launch();
+        console.log(process.env.BOT_TOKEN)
+    
+    
+    } catch (error) {
+        
+        
+        console.log('Ошибка запуска', error)
+    
+    
     }
+
 })
 
-bot.launch();
 console.log("Bot start");
