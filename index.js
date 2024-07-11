@@ -1,11 +1,14 @@
 
+const { default: mongoose } = require('mongoose');
 const { setupBot } = require('./bot');
 require("dotenv").config({path: './config/.env'});
 
-(async function(){
+
+
+(async function() {
     try {
+        await mongoose.connect(process.env.DB_TOKEN)
         await setupBot().launch();
-        console.log(process.env.BOT_TOKEN)
     
     
     } catch (error) {
@@ -16,6 +19,5 @@ require("dotenv").config({path: './config/.env'});
     
     }
 
-})
-
+}())
 console.log("Bot start");
