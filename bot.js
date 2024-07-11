@@ -1,5 +1,9 @@
 const { Telegraf } = require("telegraf");
-const { start } = require("./controllers/command")
+const {
+      start,
+      backMenu
+ } = require("./controllers/command");
+const { CMD_TEXT } = require("./config/const");
 require("dotenv").config({path: './config/.env'});
 
 
@@ -16,6 +20,8 @@ const setupBot = () =>{
     
     bot.start(start);
     
+    bot.hears(CMD_TEXT.menu, backMenu)
+
     return bot;
 }
 
